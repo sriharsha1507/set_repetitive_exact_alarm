@@ -20,24 +20,24 @@ class MainActivity : AppCompatActivity() {
                 DatePickerDialog(
                     this@MainActivity,
                     0,
-                    DatePickerDialog.OnDateSetListener { _, year, month, day ->
-                        this.set(Calendar.YEAR, year)
-                        this.set(Calendar.MONTH, month)
-                        this.set(Calendar.DAY_OF_MONTH, day)
-                        TimePickerDialog(
-                            this@MainActivity,
-                            0,
-                            TimePickerDialog.OnTimeSetListener { _, hour, minute ->
-                                this.set(Calendar.HOUR_OF_DAY, hour)
-                                this.set(Calendar.MINUTE, minute)
+                    { _, year, month, day ->
+                       this.set(Calendar.YEAR, year)
+                       this.set(Calendar.MONTH, month)
+                       this.set(Calendar.DAY_OF_MONTH, day)
+                       TimePickerDialog(
+                           this@MainActivity,
+                           0,
+                           { _, hour, minute ->
+                               this.set(Calendar.HOUR_OF_DAY, hour)
+                               this.set(Calendar.MINUTE, minute)
 
-                                alarmService.setExactAlarm(timeInMillis)
-                            },
-                            this.get(Calendar.HOUR_OF_DAY),
-                            this.get(Calendar.MINUTE),
-                            false
-                        ).show()
-                    },
+                               alarmService.setExactAlarm(timeInMillis)
+                           },
+                           this.get(Calendar.HOUR_OF_DAY),
+                           this.get(Calendar.MINUTE),
+                           false
+                       ).show()
+                   },
                     this.get(Calendar.YEAR),
                     this.get(Calendar.MONTH),
                     this.get(Calendar.DAY_OF_MONTH)
